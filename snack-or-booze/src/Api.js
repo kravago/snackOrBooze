@@ -20,6 +20,10 @@ class SnackOrBoozeApi {
     const result = await axios.get(`${BASE_API_URL}/drinks`);
     return result.data;
   }
+
+  static async postItem(formData, category) {
+    axios.post(`${BASE_API_URL}/${category}`, formData);
+  }
 }
 
 export default SnackOrBoozeApi;

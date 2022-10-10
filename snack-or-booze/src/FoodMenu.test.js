@@ -1,7 +1,6 @@
 import { MemoryRouter } from 'react-router-dom';
 import { render } from "@testing-library/react";
 import FoodMenu from "./FoodMenu";
-import SnackOrBoozeApi from './Api';
 import { drinks } from '../db.json';
 
 describe("Test FoodMenu component", () => {
