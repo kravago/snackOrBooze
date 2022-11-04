@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle, CardText,
          Form, FormGroup, Label, Input, Button } from "reactstrap";
 import SnackOrBoozeApi from './Api';
 
-function CreateMenu(props) {
+function CreateMenu({updateSnacks, updateDrinks}) {
   const initialState = {
     name: "",
     description: "",
@@ -28,12 +28,18 @@ function CreateMenu(props) {
     setItemType(value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // await SnackOrBoozeApi.postItem(formData, itemType);
-    props.updateSnacks(formData);  //updateFood(formData, itemType)
+    let newItem = {...formData, id: formData.name };
+    await SnackOrBoozeApi.postItem(newItem, itemType);
+    if (itemType === 'snacks') {
+      updateSnacks(newItem);
+    } else {
+      updateDrinks(newItem);
+    }
     setFormData(initialState);
     setItemType("drinks");
+    alert("Form submitted successfully!");
   }
 
 
