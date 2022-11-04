@@ -36,6 +36,10 @@ function App() {
     return <p>Loading &hellip;</p>;
   }
 
+  const updateSnacks = (newSnack) => {
+    setSnacks(snacks => [...snacks, { ...newSnack, id: newSnack.name }]);
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -58,7 +62,7 @@ function App() {
               <Snack items={drinks} cantFind="/drinks" />
             </Route>
             <Route path="/create">
-              <CreateMenu />
+              <CreateMenu updateSnacks={updateSnacks} />
             </Route>
             <Route>
               <p>Hmmm. I can't seem to find what you want.</p>
